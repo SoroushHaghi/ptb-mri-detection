@@ -9,3 +9,6 @@ pydicom
 scikit-image
 pytest
 flake8
+python-dotenv
+
+kaggle

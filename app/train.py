@@ -161,5 +161,5 @@ if __name__ == "__main__":
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
     # Start Training
-    train_model(model, train_loader, val_loader, criterion, optimizer, num_epochs=1)
+    train_model(model, train_loader, val_loader, criterion, optimizer, num_epochs=15)
     print("🏁 Training Finished!")
