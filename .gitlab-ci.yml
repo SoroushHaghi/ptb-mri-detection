@@ -1,0 +1,18 @@
+stages:
+  - quality
+  - test
+
+lint_code:
+  image: python:3.9-slim
+  stage: quality
+  script:
+    - pip install flake8
+    - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+unit_tests:
+  image: python:3.9-slim
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest tests/
