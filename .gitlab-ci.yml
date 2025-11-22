@@ -2,20 +2,33 @@ image: python:3.9-slim
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PYTHONPATH: "."
 
 cache:
   paths:
     - .cache/pip
 
 stages:
+  - quality
   - test
+
+lint_code:
+  stage: quality
+  script:
+    - pip install flake8
+    - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
 run_scientific_tests:
   stage: test
   before_script:
-    - apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0
+    # FIX: Replaced 'libgl1-mesa-glx' (deprecated) with 'libgl1'
+    - apt-get update && apt-get install -y libgl1 libglib2.0-0
+    
+    # Standard installation (Will use CPU on GitLab because no GPU exists there, but keeps files standard)
     - pip install --upgrade pip
     - pip install -r requirements.txt
   script:
     - echo "🧪 Running Scientific Validation Tests..."
+    # Tests run on CPU automatically since no GPU is present in CI runner
     - pytest tests/ -v
