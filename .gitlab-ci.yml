@@ -23,12 +23,11 @@ run_scientific_tests:
   stage: test
   before_script:
     # FIX: Replaced 'libgl1-mesa-glx' (deprecated) with 'libgl1'
-    - apt-get update && apt-get install -y libgl1 libglib2.0-0
+    # FIX: Clean apt cache to save space
+    - apt-get update && apt-get install -y libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
     
     # Standard installation (Will use CPU on GitLab because no GPU exists there, but keeps files standard)
     - pip install --upgrade pip
-    # FIX: Install CPU-only torch to save space in CI environment
-    - pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
     - pip install -r requirements.txt
   script:
     - echo "🧪 Running Scientific Validation Tests..."
