@@ -63,7 +63,8 @@ python utils/data_manager.py
 ### 2. Training the Model
 Train the U-Net model (Auto-detects GPU):
 ```bash
-python app/train.py
+python app/train.py`n`n### 3. Deploy and Final Commit`n`n**To deploy this trained model:**`n```bash`n#### 3. Push Model & Final Code`n#### 3. Push Model & Final Code
+git add model_final.pth`n`n# (Mandatory step to upload the 80MB artifact to GitHub)`n`n# (Mandatory step to upload the 80MB artifact to GitHub)`n
 ```
 *Artifacts are saved as `model_final.pth`.*
 
