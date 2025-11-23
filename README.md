@@ -12,13 +12,15 @@ This repository contains a **Scientific Deep Learning Pipeline** designed for th
 The system is built upon a **Stateless Microservices** architecture:
 
 1.  **Ingestion Layer (Telegram Bot):** Secure & rapid image acquisition interface for physicians.
-2.  **Core Engine (U-Net):** A deep convolutional neural network implemented in `PyTorch` for semantic segmentation.
+2.  **Core Engine (U-Net++ with EfficientNet-B4 Encoder):** A state-of-the-art deep convolutional neural network for semantic segmentation, leveraging the `segmentation_models_pytorch` library.
+    * **Model:** `UnetPlusPlus` with an `efficientnet-b4` backbone.
     * **Loss Function:** Combined `Dice Loss` + `BCEWithLogitsLoss` for training stability.
     * **Metrics:** `Dice Coefficient` (Overlap) and `Hausdorff Distance` (Safety/Geometric accuracy).
 3.  **Visualization (Streamlit):** An interactive dashboard providing overlay visualization and human-in-the-loop feedback mechanisms.
 
 ## 🚀 Key Features
 
+* **SOTA Model Architecture:** Utilizes `segmentation_models_pytorch` for easy access to state-of-the-art models like `U-Net++`.
 * **Scientific Preprocessing:** * Min-Max Normalization (handling 8-bit & 16-bit depth).
     * Padding-based resizing (preserving aspect ratio/geometry).
 * **Robust Training:**
