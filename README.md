@@ -1,6 +1,9 @@
 
 # PTB Research: MRI Brain Tumor Segmentation Pipeline
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ptb-mri-detection.streamlit.app)
+
+
 ![PTB Status](https://img.shields.io/badge/Status-Research%20Prototype-blue)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-yellow)
 ![PyTorch](https://img.shields.io/badge/PyTorch-CUDA%20Enabled-red)
