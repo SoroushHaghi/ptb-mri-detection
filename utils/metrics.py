@@ -17,7 +17,14 @@ def dice_coeff(pred, target, smooth=1e-5):
     target = target.view(-1)
     
     intersection = (pred * target).sum()
-    dice = (2. * intersection + smooth) / (pred.sum() + target.sum() + smooth)
+    pred_sum = pred.sum()
+    target_sum = target.sum()
+
+    # Handle cases where both pred and target are all zeros
+    if pred_sum == 0 and target_sum == 0:
+        return 1.0 # Perfect match if both are empty
+
+    dice = (2. * intersection + smooth) / (pred_sum + target_sum + smooth)
     
     return dice.item()
 
