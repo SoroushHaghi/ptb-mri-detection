@@ -27,6 +27,8 @@ run_scientific_tests:
     
     # Standard installation (Will use CPU on GitLab because no GPU exists there, but keeps files standard)
     - pip install --upgrade pip
+    # FIX: Install CPU-only torch to save space in CI environment
+    - pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
     - pip install -r requirements.txt
   script:
     - echo "🧪 Running Scientific Validation Tests..."
