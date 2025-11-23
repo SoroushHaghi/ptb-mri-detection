@@ -28,7 +28,7 @@ run_scientific_tests:
     
     # Standard installation (Will use CPU on GitLab because no GPU exists there, but keeps files standard)
     - pip install --upgrade pip
-    - pip install -r requirements.txt
+    - pip install -r requirements-ci.txt
   script:
     - echo "🧪 Running Scientific Validation Tests..."
     # Tests run on CPU automatically since no GPU is present in CI runner
