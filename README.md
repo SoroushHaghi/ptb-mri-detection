@@ -32,7 +32,6 @@ The system is built upon a **Stateless Microservices** architecture:
 
 ### Prerequisites
 * Python 3.9+
-* NVIDIA GPU (Recommended for training) with CUDA 11.8+
 * All other dependencies (including `segmentation_models_pytorch`) are listed in `requirements.txt`.
 
 ### Setup
