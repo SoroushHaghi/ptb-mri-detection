@@ -1,43 +1,36 @@
-
-# PTB Research: MRI Brain Tumor Segmentation Pipeline
+# PTB Research: MRI Brain Tumor Segmentation
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ptb-mri-detection.streamlit.app)
-
 
 ![PTB Status](https://img.shields.io/badge/Status-Research%20Prototype-blue)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-yellow)
 ![PyTorch](https://img.shields.io/badge/PyTorch-CUDA%20Enabled-red)
 
-This repository contains a **Scientific Deep Learning Pipeline** designed for the automated segmentation of brain tumors from MRI scans (LGG Segmentation Dataset). It demonstrates an end-to-end MLOps workflow suitable for medical imaging research.
+This repository contains a **Scientific Deep Learning Application** for the automated segmentation of brain tumors from MRI scans. It provides an interactive Streamlit dashboard for visualizing the results.
 
 ## 🧠 Project Architecture
 
-The system is built upon a **Stateless Microservices** architecture:
+The system is a **Streamlit Web Application** that uses a pre-trained **U-Net++ with an EfficientNet-B4 Encoder** for semantic segmentation.
 
-1.  **Ingestion Layer (Telegram Bot):** Secure & rapid image acquisition interface for physicians.
-2.  **Core Engine (U-Net++ with EfficientNet-B4 Encoder):** A state-of-the-art deep convolutional neural network for semantic segmentation, leveraging the `segmentation_models_pytorch` library.
-    * **Model:** `UnetPlusPlus` with an `efficientnet-b4` backbone.
-    * **Loss Function:** Combined `Dice Loss` + `BCEWithLogitsLoss` for training stability.
-    * **Metrics:** `Dice Coefficient` (Overlap) and `Hausdorff Distance` (Safety/Geometric accuracy).
-3.  **Visualization (Streamlit):** An interactive dashboard providing overlay visualization and human-in-the-loop feedback mechanisms.
+*   **Model:** `UnetPlusPlus` with an `efficientnet-b4` backbone.
+*   **Framework:** `segmentation_models_pytorch`
+*   **Interface:** Streamlit
 
 ## 🚀 Key Features
 
-* **SOTA Model Architecture:** Utilizes `segmentation_models_pytorch` for easy access to state-of-the-art models like `U-Net++`.
-* **Scientific Preprocessing:** * Min-Max Normalization (handling 8-bit & 16-bit depth).
-    * Padding-based resizing (preserving aspect ratio/geometry).
-* **Robust Training:**
-    * Data Augmentation via `Albumentations` (Noise, Rotation, Shift) to simulate real-world clinical data variance.
-    * **CUDA Acceleration:** Optimized for NVIDIA GPU training.
-* **Reproducibility:** Global Random Seed (`42`) enforced across all modules.
+*   **SOTA Model Architecture:** Utilizes `segmentation_models_pytorch` for easy access to state-of-the-art models like `U-Net++`.
+*   **Interactive Dashboard:** An intuitive Streamlit interface for uploading MRI scans and visualizing the segmentation results.
+*   **CUDA Acceleration:** Optimized for NVIDIA GPU inference.
 
 ## 🛠️ Installation
 
 ### Prerequisites
-* Python 3.9+
-* All other dependencies (including `segmentation_models_pytorch`) are listed in `requirements.txt`.
+
+*   Python 3.9+
+*   All other dependencies are listed in `requirements.txt`.
 
 ### Setup
+
 1.  Clone the repository:
     ```bash
     git clone https://github.com/SoroushHaghi/ptb-mri-detection.git
@@ -49,39 +42,18 @@ The system is built upon a **Stateless Microservices** architecture:
     pip install -r requirements.txt
     ```
 
-3.  Setup Kaggle API:
-    Place your `kaggle.json` inside `~/.kaggle/` (or user home directory on Windows).
-
 ## 🚦 Usage
 
-### 1. Data Preparation
-Download and split the dataset (Patient-wise split to prevent data leakage):
-```bash
-python utils/data_manager.py
-```
+### Running the Dashboard
 
-### 2. Training the Model
-Train the U-Net model (Auto-detects GPU):
-```bash
-python app/train.py`n`n### 3. Deploy and Final Commit`n`n**To deploy this trained model:**`n```bash`n#### 3. Push Model & Final Code`n#### 3. Push Model & Final Code
-git add model_final.pth`n`n# (Mandatory step to upload the 80MB artifact to GitHub)`n`n# (Mandatory step to upload the 80MB artifact to GitHub)`n
-```
-*Artifacts are saved as `model_final.pth`.*
-
-### 3. Running the Dashboard
 Launch the physician interface:
+
 ```bash
 streamlit run app/dashboard.py
 ```
 
-### 4. Running the Bot (Optional)
-To enable the Telegram interface:
-```bash
-python app/bot.py
-```
-
-## 🔬 Scientific Validation
-The model is evaluated using **Hausdorff Distance (HD95)** to ensure clinical safety by measuring the maximum outlier distance between the predicted mask and ground truth.
+You can also access the deployed application here: [https://ptb-mri-detection.streamlit.app](https://ptb-mri-detection.streamlit.app)
 
 ---
+
 *Developed for PTB Department 8.4 Application.*

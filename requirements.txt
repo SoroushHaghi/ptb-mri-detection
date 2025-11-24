@@ -13,4 +13,3 @@ python-dotenv
 black
 kaggle
 segmentation-models-pytorch
-python-telegram-bot

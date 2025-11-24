@@ -1,4 +1,3 @@
-import sys
 import os
 import streamlit as st
 import torch
@@ -9,8 +8,6 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import segmentation_models_pytorch as smp
 
-# Path Fix
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import IMG_SIZE
 
 # --- CONFIGURATION ---

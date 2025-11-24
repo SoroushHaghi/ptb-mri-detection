@@ -18,6 +18,6 @@ def seed_everything(seed=SEED):
 
 # --- IMAGING CONSTANTS ---
 IMG_SIZE = 256          # Input size for U-Net
-CHANNELS = 1            # Force Grayscale
+CHANNELS = 3            # Force Grayscale
 NUM_CLASSES = 1         # Binary Segmentation
 THRESHOLD = 0.5         # Sensitivity
